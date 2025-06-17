@@ -1,7 +1,6 @@
-import {
-    Box, Modal, Typography,IconButton
-} from '@mui/material';
+import {Box, Modal, Typography,IconButton, Button} from '@mui/material';
 import CloseIcon from "@mui/icons-material/Close";
+import {ProductBasket} from "./ProductBasket.tsx";
 
 
 const style = {
@@ -17,7 +16,7 @@ const style = {
     borderRadius: '0.75rem'
 };
 
-export function ModalBasket({open, onClick}) {
+export function ModalBasket({props, open, onClick}) {
     return(
         <Modal
             open={open}
@@ -28,19 +27,36 @@ export function ModalBasket({open, onClick}) {
                 <Box sx={{
                     display: 'flex',
                     justifyContent: 'space-between',
-                    alignItems: 'center'
+                    alignItems: 'center',
+                    mb: 3
                 }}>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Text
+                        Корзина
                     </Typography>
                     <IconButton sx={{ marginLeft: 'auto' }} onClick={onClick}>
                         <CloseIcon />
                     </IconButton>
                 </Box>
 
+                {/* Карточки товаров в корзине */}
+                <ProductBasket / >
 
-
-
+                {/* Итого и кнопка оформления */}
+                <Box sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    borderTop: '1px solid',
+                    borderColor: 'divider',
+                    pt: 2
+                }}>
+                    <Typography variant="h6">
+                        Итого: 2 499 ₽
+                    </Typography>
+                    <Button variant="contained" size="large" sx={{ minWidth: 200 }}>
+                        Оформить заказ
+                    </Button>
+                </Box>
             </Box>
         </Modal>
     )

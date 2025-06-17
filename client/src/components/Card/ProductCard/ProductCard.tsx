@@ -9,7 +9,7 @@ export function ProductCard ({props, onClick}) {
         <div className={'product'}>
             <div className={'imageContainer'}>
                 <img
-                    src={'https://i.ytimg.com/vi/jg8ixdQzrjc/maxresdefault.jpg'}
+                    src={props.imgUrl}
                     className={'productImage'}
                 />
             </div>

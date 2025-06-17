@@ -22,13 +22,10 @@ function App() {
             const productsBasket = await fakeFetchBasket()
             setProducts(result)
             setBasket(productsBasket)
-            console.log('LOOOG', result)
             setLoading(prev => !prev)
         }
-
         preload()
     }, [])
-
 
     if (loading) {
         return (
@@ -43,6 +40,10 @@ function App() {
                 }}/>
             </Box>
         )
+    }
+
+    function addProductBasket(value) {
+        return setBasket(prev => ([...prev, products.find(i => i.id === value)]))
     }
 
 
@@ -70,14 +71,14 @@ function App() {
                     {products?.map(product => {
                         return (
                             <Grid size={4}>
-                                <ProductCard props={product} onClick={() => console.log('aaa')}/>
+                                <ProductCard props={product} onClick={() => addProductBasket(product.id)}/>
                             </Grid>
                         )
                     })}
                 </Grid>
             </Container>
 
-            <ModalBasket open={openBasket} onClick={() => setOpenBasket(!openBasket)}/>
+            <ModalBasket props={basket} open={openBasket} onClick={() => setOpenBasket(!openBasket)}/>
 
         </div>
     )
